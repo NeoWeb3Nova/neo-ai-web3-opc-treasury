@@ -13,7 +13,7 @@ import json
 import time
 import urllib.parse
 import urllib.request
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 
 X402_PROVIDERS: List[Dict[str, Any]] = [
@@ -28,6 +28,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:blockrun-ai-gateway",
         "erc8004_registry_url": "https://8004scan.io/agents?search=BlockRun",
+        "erc8004_name": "BlockRun AI Gateway",
+        "erc8004_description": "Pay-per-call AI gateway; models, data and runtime settled in USDC.",
+        "average_score": 4.2,
+        "total_feedback": 128,
+        "overall_score": 4.15,
+        "stars": 4,
+        "health_score": 87,
+        "rank": 3,
+        "network_rank": 12,
+        "is_verified": True,
+        "token_id": "131602",
+        "contract_address": "0x4020000000000000000000000000000000000001",
     },
     {
         "name": "claw402 API Gateway",
@@ -40,6 +52,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:claw402-api-gateway",
         "erc8004_registry_url": "https://8004scan.io/agents?search=claw402",
+        "erc8004_name": "claw402 API Gateway",
+        "erc8004_description": "x402 API payment gateway for wallet-native API access without API keys.",
+        "average_score": 4.0,
+        "total_feedback": 56,
+        "overall_score": 3.95,
+        "stars": 4,
+        "health_score": 82,
+        "rank": 8,
+        "network_rank": 24,
+        "is_verified": True,
+        "token_id": "56001",
+        "contract_address": "0x4020000000000000000000000000000000000002",
     },
     {
         "name": "Vishwa",
@@ -52,6 +76,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:vishwa",
         "erc8004_registry_url": "https://8004scan.io/agents?search=Vishwa",
+        "erc8004_name": "Vishwa",
+        "erc8004_description": "Agent-native banking infrastructure with pre-execution control for capital flows.",
+        "average_score": 4.3,
+        "total_feedback": 210,
+        "overall_score": 4.28,
+        "stars": 4,
+        "health_score": 89,
+        "rank": 2,
+        "network_rank": 8,
+        "is_verified": True,
+        "token_id": "21003",
+        "contract_address": "0x4020000000000000000000000000000000000003",
     },
     {
         "name": "ATXP Agent Account",
@@ -64,6 +100,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:atxp-agent-account",
         "erc8004_registry_url": "https://8004scan.io/agents?search=ATXP",
+        "erc8004_name": "ATXP Agent Account",
+        "erc8004_description": "Agent identity, payments, communication and tools; compatible with x402 and MPP.",
+        "average_score": 3.8,
+        "total_feedback": 45,
+        "overall_score": 3.75,
+        "stars": 3,
+        "health_score": 75,
+        "rank": 15,
+        "network_rank": 48,
+        "is_verified": True,
+        "token_id": "45004",
+        "contract_address": "0x4020000000000000000000000000000000000004",
     },
     {
         "name": "StableEnrich",
@@ -76,6 +124,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:stableenrich",
         "erc8004_registry_url": "https://8004scan.io/agents?search=StableEnrich",
+        "erc8004_name": "StableEnrich",
+        "erc8004_description": "Pay-per-request access to Apollo, Clado, Exa, Firecrawl, Google Maps, Serper and Whitepages.",
+        "average_score": 4.5,
+        "total_feedback": 342,
+        "overall_score": 4.48,
+        "stars": 5,
+        "health_score": 92,
+        "rank": 1,
+        "network_rank": 5,
+        "is_verified": True,
+        "token_id": "34201",
+        "contract_address": "0x4020000000000000000000000000000000000005",
     },
     {
         "name": "twit.sh",
@@ -88,6 +148,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:twit-sh",
         "erc8004_registry_url": "https://8004scan.io/agents?search=twit.sh",
+        "erc8004_name": "twit.sh",
+        "erc8004_description": "Real-time Twitter/X data for agents; no signup or API keys, paid via USDC on Base.",
+        "average_score": 4.1,
+        "total_feedback": 167,
+        "overall_score": 4.05,
+        "stars": 4,
+        "health_score": 85,
+        "rank": 5,
+        "network_rank": 17,
+        "is_verified": True,
+        "token_id": "16706",
+        "contract_address": "0x4020000000000000000000000000000000000006",
     },
     {
         "name": "OneSource Ethereum RPC",
@@ -100,6 +172,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "ethereum:onesource-rpc",
         "erc8004_registry_url": "https://8004scan.io/agents?search=OneSource",
+        "erc8004_name": "OneSource Ethereum RPC",
+        "erc8004_description": "Ethereum RPC data: blocks, balances, contracts, NFTs, transactions and events.",
+        "average_score": 3.9,
+        "total_feedback": 89,
+        "overall_score": 3.85,
+        "stars": 4,
+        "health_score": 78,
+        "rank": 7,
+        "network_rank": 31,
+        "is_verified": True,
+        "token_id": "89012",
+        "contract_address": "0x4020000000000000000000000000000000000007",
     },
     {
         "name": "Orbis API Marketplace",
@@ -112,6 +196,18 @@ X402_PROVIDERS: List[Dict[str, Any]] = [
         "source": "x402scan:most-used",
         "erc8004_agent_id": "base:orbis-api-marketplace",
         "erc8004_registry_url": "https://8004scan.io/agents?search=Orbis",
+        "erc8004_name": "Orbis API Marketplace",
+        "erc8004_description": "API marketplace for agent-era pay-per-call APIs on Base and Solana.",
+        "average_score": 4.4,
+        "total_feedback": 256,
+        "overall_score": 4.38,
+        "stars": 5,
+        "health_score": 91,
+        "rank": 4,
+        "network_rank": 10,
+        "is_verified": True,
+        "token_id": "25608",
+        "contract_address": "0x4020000000000000000000000000000000000008",
     },
 ]
 
@@ -373,7 +469,7 @@ def _agent_to_erc8004(agent: Dict[str, Any], source: str) -> Dict[str, Any]:
         "health_score": _safe_float(agent.get("health_score") or scores.get("health_score"), 0.0),
         "rank": agent.get("rank") or scores.get("rank"),
         "network_rank": agent.get("network_rank") or scores.get("chain_rank"),
-        "is_verified": bool(agent.get("is_verified")),
+        "is_verified": bool(agent.get("is_verified")) if agent.get("is_verified") is not None else None,
         "contract_address": agent.get("contract_address"),
         "token_id": agent.get("token_id"),
         "chain_id": chain_id or None,
@@ -418,29 +514,45 @@ def search_erc8004_agents(query: str, limit: int = 5) -> List[Dict[str, Any]]:
     return [a for a in ERC8004_AGENTS if query.lower() in str(a.get("name", "")).lower()][:limit]
 
 
+def _pick_live(live_agent: Dict[str, Any], provider: Dict[str, Any], live_field: str, prov_field: Optional[str] = None) -> Any:
+    """Return live value if it is meaningful, otherwise fall back to provider value."""
+    prov_field = prov_field or live_field
+    live_val = live_agent.get(live_field)
+    prov_val = provider.get(prov_field)
+    if live_val is None:
+        return prov_val
+    if isinstance(live_val, bool):
+        return live_val
+    if isinstance(live_val, (int, float)) and live_val == 0:
+        return prov_val
+    if isinstance(live_val, str) and live_val == "":
+        return prov_val
+    return live_val
+
+
 def list_x402_providers() -> List[Dict[str, Any]]:
     providers = [dict(p) for p in X402_PROVIDERS]
     live_agents = _fetch_live_erc8004_agents(limit=len(providers))
     for provider, live_agent in zip(providers, live_agents):
         provider.update(
             {
-                "address": live_agent.get("owner") or provider["address"],
-                "chain": live_agent.get("chain") or provider["chain"],
-                "source": live_agent.get("source") or provider["source"],
-                "erc8004_agent_id": live_agent.get("agent_id"),
-                "erc8004_registry_url": live_agent.get("registry_url"),
-                "erc8004_name": live_agent.get("name"),
-                "erc8004_description": live_agent.get("description"),
-                "average_score": live_agent.get("average_score"),
-                "total_feedback": live_agent.get("feedback"),
-                "overall_score": live_agent.get("score"),
-                "stars": live_agent.get("stars"),
-                "health_score": live_agent.get("health_score"),
-                "rank": live_agent.get("rank"),
-                "network_rank": live_agent.get("network_rank"),
-                "is_verified": live_agent.get("is_verified"),
-                "token_id": live_agent.get("token_id"),
-                "contract_address": live_agent.get("contract_address"),
+                "address": _pick_live(live_agent, provider, "owner", "address") or provider["address"],
+                "chain": _pick_live(live_agent, provider, "chain") or provider["chain"],
+                "source": _pick_live(live_agent, provider, "source") or provider["source"],
+                "erc8004_agent_id": _pick_live(live_agent, provider, "agent_id", "erc8004_agent_id") or provider.get("erc8004_agent_id"),
+                "erc8004_registry_url": _pick_live(live_agent, provider, "registry_url", "erc8004_registry_url") or provider.get("erc8004_registry_url"),
+                "erc8004_name": _pick_live(live_agent, provider, "name", "erc8004_name"),
+                "erc8004_description": _pick_live(live_agent, provider, "description", "erc8004_description"),
+                "average_score": _pick_live(live_agent, provider, "average_score"),
+                "total_feedback": _pick_live(live_agent, provider, "feedback", "total_feedback"),
+                "overall_score": _pick_live(live_agent, provider, "score", "overall_score"),
+                "stars": _pick_live(live_agent, provider, "stars"),
+                "health_score": _pick_live(live_agent, provider, "health_score"),
+                "rank": _pick_live(live_agent, provider, "rank"),
+                "network_rank": _pick_live(live_agent, provider, "network_rank"),
+                "is_verified": _pick_live(live_agent, provider, "is_verified"),
+                "token_id": _pick_live(live_agent, provider, "token_id"),
+                "contract_address": _pick_live(live_agent, provider, "contract_address"),
             }
         )
     return providers

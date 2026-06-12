@@ -342,7 +342,7 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-007y7z8a9b", card_id="card-a1b2c3d4",
-                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=16)).isoformat(),
+                agent_id="agent-vega-research", timestamp=(tx_base + timedelta(hours=16)).isoformat(),
                 vendor="Midjourney", vendor_address=self._vendor_registry["Midjourney"],
                 amount=500.0, currency="USDC", status="DENIED",
                 reason="Amount exceeds single-transaction limit", remaining_budget=155.0,
@@ -351,7 +351,7 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-008c0d1e2f", card_id="card-e5f6g7h8",
-                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=3)).isoformat(),
+                agent_id="agent-lyra-growth", timestamp=(tx_base + timedelta(hours=3)).isoformat(),
                 vendor="Google Ads", vendor_address=self._vendor_registry["Google Ads"],
                 amount=80.0, currency="USDC", status="APPROVED",
                 reason="All checks passed | WARN: OFF_HOURS: 00:00-05:00", remaining_budget=570.0,
