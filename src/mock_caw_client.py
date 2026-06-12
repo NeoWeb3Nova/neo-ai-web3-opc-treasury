@@ -163,6 +163,175 @@ class MockCAWClient:
             "Vercel": "0xVercel00000000000000000000000000000009",
         })
 
+        self._seed_mock_data()
+
+    def _seed_mock_data(self) -> None:
+        """Seed mock cards and transactions to match frontend INITIAL_CARDS / INITIAL_TRANSACTIONS."""
+        now = datetime.now(timezone.utc)
+        month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        month_end = (month_start + timedelta(days=32)).replace(day=1) - timedelta(seconds=1)
+
+        # ── Card 1: Content Agent (ACTIVE, assigned) ──
+        card1 = CardPact(
+            card_id="card-a1b2c3d4",
+            agent_id="agent-content-agent-e1f2",
+            agent_name="Content Agent",
+            owner=self._owner,
+            status="ACTIVE",
+            budget=Budget(currency="USDC", monthly_max=200.0, spent=45.0, single_tx_limit=50.0),
+            vendor_whitelist=[
+                Vendor(name="OpenAI", address=self._vendor_registry["OpenAI"], category="api"),
+                Vendor(name="Midjourney", address=self._vendor_registry["Midjourney"], category="api"),
+                Vendor(name="Unsplash", address=self._vendor_registry["Unsplash"], category="api"),
+            ],
+            cooldown_hours=12,
+            time_window=TimeWindow(
+                start=month_start.isoformat(),
+                end=month_end.isoformat(),
+                allowed_hours_start="00:00",
+                allowed_hours_end="23:59",
+            ),
+            created_at=month_start.isoformat(),
+            expires_at=month_end.isoformat(),
+            api_key="caw_sk_a1b2c3d4e5f6",
+            assigned_agent_id="agent-content",
+            assigned_agent_name="Content Agent",
+            assigned_at=(month_start + timedelta(days=6, hours=9)).isoformat(),
+        )
+
+        # ── Card 2: Ad Agent (ACTIVE, assigned) ──
+        card2 = CardPact(
+            card_id="card-e5f6g7h8",
+            agent_id="agent-ad-agent-g3h4",
+            agent_name="Ad Agent",
+            owner=self._owner,
+            status="ACTIVE",
+            budget=Budget(currency="USDC", monthly_max=800.0, spent=150.0, single_tx_limit=200.0),
+            vendor_whitelist=[
+                Vendor(name="Google Ads", address=self._vendor_registry["Google Ads"], category="ads"),
+                Vendor(name="Twitter Ads", address=self._vendor_registry["Twitter Ads"], category="ads"),
+            ],
+            cooldown_hours=6,
+            time_window=TimeWindow(
+                start=month_start.isoformat(),
+                end=month_end.isoformat(),
+                allowed_hours_start="06:00",
+                allowed_hours_end="23:00",
+            ),
+            created_at=month_start.isoformat(),
+            expires_at=month_end.isoformat(),
+            api_key="caw_sk_e5f6g7h8i9j0",
+            assigned_agent_id="agent-ad",
+            assigned_agent_name="Ad Agent",
+            assigned_at=(month_start + timedelta(days=6, hours=9)).isoformat(),
+        )
+
+        # ── Card 3: Design Agent (PENDING_APPROVAL) ──
+        card3 = CardPact(
+            card_id="card-i9j0k1l2",
+            agent_id="agent-design-agent-k5l6",
+            agent_name="Design Agent",
+            owner=self._owner,
+            status="PENDING_APPROVAL",
+            budget=Budget(currency="USDC", monthly_max=500.0, spent=0.0, single_tx_limit=100.0),
+            vendor_whitelist=[
+                Vendor(name="Designer PH", address=self._vendor_registry["Designer PH"], category="outsource"),
+                Vendor(name="Unsplash", address=self._vendor_registry["Unsplash"], category="api"),
+            ],
+            cooldown_hours=24,
+            time_window=TimeWindow(
+                start=month_start.isoformat(),
+                end=month_end.isoformat(),
+                allowed_hours_start="09:00",
+                allowed_hours_end="18:00",
+            ),
+            created_at=(month_start + timedelta(days=4, hours=10, minutes=30)).isoformat(),
+            expires_at=month_end.isoformat(),
+            api_key="",
+        )
+
+        self._cards = {
+            card1.card_id: card1,
+            card2.card_id: card2,
+            card3.card_id: card3,
+        }
+        self._used_api_keys.update({c.api_key for c in self._cards.values() if c.api_key})
+
+        # ── Seed transactions (must match the card budgets above) ──
+        tx_base = month_start + timedelta(days=6)
+        self._transactions = [
+            Transaction(
+                tx_id="tx-001a2b3c4d", card_id="card-a1b2c3d4",
+                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=9, minutes=15)).isoformat(),
+                vendor="OpenAI", vendor_address=self._vendor_registry["OpenAI"],
+                amount=10.0, currency="USDC", status="APPROVED",
+                reason="All checks passed", remaining_budget=190.0,
+                tx_hash="0xabc123def456", metadata={"purpose": "GPT-4 API tokens for blog generation"},
+            ),
+            Transaction(
+                tx_id="tx-002e5f6g7h", card_id="card-a1b2c3d4",
+                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=10, minutes=30)).isoformat(),
+                vendor="Midjourney", vendor_address=self._vendor_registry["Midjourney"],
+                amount=30.0, currency="USDC", status="APPROVED",
+                reason="All checks passed", remaining_budget=160.0,
+                tx_hash="0xdef789abc012", metadata={"purpose": "Monthly image generation subscription"},
+            ),
+            Transaction(
+                tx_id="tx-003i4j5k6l", card_id="card-a1b2c3d4",
+                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=11)).isoformat(),
+                vendor="Unsplash", vendor_address=self._vendor_registry["Unsplash"],
+                amount=5.0, currency="USDC", status="APPROVED",
+                reason="All checks passed", remaining_budget=155.0,
+                tx_hash="0xghi345jkl678", metadata={"purpose": "Stock photos for social media"},
+            ),
+            Transaction(
+                tx_id="tx-004m7n8o9p", card_id="card-e5f6g7h8",
+                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=9)).isoformat(),
+                vendor="Google Ads", vendor_address=self._vendor_registry["Google Ads"],
+                amount=100.0, currency="USDC", status="APPROVED",
+                reason="All checks passed", remaining_budget=700.0,
+                tx_hash="0xjkl901mno234", metadata={"purpose": "Search campaign for product launch"},
+            ),
+            Transaction(
+                tx_id="tx-005q1r2s3t", card_id="card-e5f6g7h8",
+                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=14)).isoformat(),
+                vendor="Twitter Ads", vendor_address=self._vendor_registry["Twitter Ads"],
+                amount=50.0, currency="USDC", status="APPROVED",
+                reason="All checks passed", remaining_budget=650.0,
+                tx_hash="0xpqr567stu890", metadata={"purpose": "Social media promotion"},
+            ),
+            Transaction(
+                tx_id="tx-006u4v5w6x", card_id="card-a1b2c3d4",
+                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=15)).isoformat(),
+                vendor="FakeCloudService", vendor_address="0xUnknown",
+                amount=999.0, currency="USDC", status="DENIED",
+                reason="Vendor not on card whitelist", remaining_budget=155.0,
+                tx_hash="", metadata={"purpose": "Suspicious request", "trigger": "prompt_injection"},
+                alert_level="blocked",
+            ),
+            Transaction(
+                tx_id="tx-007y7z8a9b", card_id="card-a1b2c3d4",
+                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=16)).isoformat(),
+                vendor="Midjourney", vendor_address=self._vendor_registry["Midjourney"],
+                amount=500.0, currency="USDC", status="DENIED",
+                reason="Amount exceeds single-transaction limit", remaining_budget=155.0,
+                tx_hash="", metadata={"purpose": "Overpriced image", "trigger": "overpriced", "normal_price": 30.0},
+                alert_level="blocked",
+            ),
+            Transaction(
+                tx_id="tx-008c0d1e2f", card_id="card-e5f6g7h8",
+                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=3)).isoformat(),
+                vendor="Google Ads", vendor_address=self._vendor_registry["Google Ads"],
+                amount=80.0, currency="USDC", status="APPROVED",
+                reason="All checks passed | WARN: OFF_HOURS: 00:00-05:00", remaining_budget=570.0,
+                tx_hash="0xvwxyz123456", metadata={"purpose": "Late night campaign adjustment"},
+                alert_level="human_review",
+            ),
+        ]
+
+        for tx in self._transactions:
+            self._log_audit("SEED_TRANSACTION", tx.card_id, {"tx_id": tx.tx_id, "status": tx.status, "amount": tx.amount})
+
     # ───────────────────────────────────────────
     # Identity & Pact Lifecycle
     # ───────────────────────────────────────────

@@ -100,6 +100,20 @@ const PROFILES: Record<string, Omit<PortraitProfile, 'code'>> = {
     accessory: 'ledger',
     smile: 'soft',
   },
+  watt: {
+    key: 'watt',
+    accent: '#e8a135',
+    accentSoft: '#f5e8d0',
+    jacket: '#2b4a6f',
+    shirt: '#f5f0e6',
+    skin: '#e8b995',
+    hair: '#1f1b18',
+    hair2: '#3c322c',
+    glasses: 'square',
+    hairStyle: 'short',
+    accessory: 'hoodie',
+    smile: 'focused',
+  },
 };
 
 const FALLBACKS = Object.values(PROFILES);
