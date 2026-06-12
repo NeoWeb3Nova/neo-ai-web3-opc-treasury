@@ -718,8 +718,7 @@ def test_real_caw_submit_payment_passes_required_src_addr(monkeypatch):
     assert captured["pact_id"] == "card-1"
     assert captured["api_key"] == ""  # no pact api_key in card, falls back to agent key
 
-
-    def test_real_caw_http_transfer_payload_is_scoped_to_card_pact(monkeypatch):
+def test_real_caw_http_transfer_payload_is_scoped_to_card_pact(monkeypatch):
     """CAW policy enforcement needs the Pact/Card id on transfer requests.
 
     The CAW CLI requires --pact-id for `caw tx transfer`; omitting the same
@@ -749,7 +748,7 @@ def test_real_caw_submit_payment_passes_required_src_addr(monkeypatch):
 
     captured = {}
 
-    def fake_http_post_json(path, payload):
+    def fake_http_post_json(path, payload, api_key=None):
         captured["path"] = path
         captured["payload"] = payload
         return {"success": True, "result": {"tx_hash": "0xabc"}}
