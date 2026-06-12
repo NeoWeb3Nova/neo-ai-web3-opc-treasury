@@ -15,7 +15,7 @@ import {
   CreditCard,
   Shield,
 } from 'lucide-react';
-import { ERC8004_TRUST_REQUIREMENTS, DIGITAL_EMPLOYEES, type CardPact, type DigitalEmployee, type Transaction } from '../data/mockData';
+import { ERC8004_TRUST_REQUIREMENTS, DIGITAL_EMPLOYEES, INITIAL_CARDS, INITIAL_TRANSACTIONS, type CardPact, type DigitalEmployee, type Transaction } from '../data/mockData';
 import EmployeeAvatar from '../components/EmployeeAvatar';
 import { cawApi, type PaymentResponse } from '../api/caw';
 import { getCardStatusConfig, normalizeCardStatus } from '../utils/cardStatus';
@@ -172,6 +172,8 @@ export default function AgentConsole() {
       setOffline(false);
     } catch (err) {
       console.warn('[AgentConsole] Backend unreachable:', err);
+      setCards(INITIAL_CARDS);
+      setTransactions(INITIAL_TRANSACTIONS);
       setOffline(true);
     } finally {
       if (showPageLoading) setLoading(false);
@@ -200,6 +202,8 @@ export default function AgentConsole() {
       .catch((err) => {
         if (cancelled) return;
         console.warn('[AgentConsole] Backend unreachable:', err);
+        setCards(INITIAL_CARDS);
+        setTransactions(INITIAL_TRANSACTIONS);
         setOffline(true);
       })
       .finally(() => {

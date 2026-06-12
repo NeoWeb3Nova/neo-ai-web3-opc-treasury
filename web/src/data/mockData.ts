@@ -283,8 +283,8 @@ export const ALL_VENDORS: Vendor[] = [
 export const INITIAL_CARDS: CardPact[] = [
   {
     card_id: 'card-a1b2c3d4',
-    agent_id: 'agent-content-agent-e1f2',
-    agent_name: 'Content Agent',
+    agent_id: 'agent-vega-research',
+    agent_name: 'Vega Research Agent',
     owner: '0xOPCBossNe0001',
     status: 'ACTIVE',
     budget: {
@@ -308,11 +308,14 @@ export const INITIAL_CARDS: CardPact[] = [
     created_at: '2026-06-01T08:00:00+00:00',
     expires_at: '2026-06-30T23:59:59+00:00',
     api_key: 'caw_sk_a1b2c3d4e5f6',
+    assigned_agent_id: 'agent-vega-research',
+    assigned_agent_name: 'Vega Research Agent',
+    assigned_at: '2026-06-07T09:00:00+00:00',
   },
   {
     card_id: 'card-e5f6g7h8',
-    agent_id: 'agent-ad-agent-g3h4',
-    agent_name: 'Ad Agent',
+    agent_id: 'agent-lyra-growth',
+    agent_name: 'Lyra Growth Agent',
     owner: '0xOPCBossNe0001',
     status: 'ACTIVE',
     budget: {
@@ -335,6 +338,9 @@ export const INITIAL_CARDS: CardPact[] = [
     created_at: '2026-06-01T08:00:00+00:00',
     expires_at: '2026-06-30T23:59:59+00:00',
     api_key: 'caw_sk_e5f6g7h8i9j0',
+    assigned_agent_id: 'agent-lyra-growth',
+    assigned_agent_name: 'Lyra Growth Agent',
+    assigned_at: '2026-06-07T09:00:00+00:00',
   },
   {
     card_id: 'card-i9j0k1l2',
@@ -363,13 +369,43 @@ export const INITIAL_CARDS: CardPact[] = [
     expires_at: '2026-06-30T23:59:59+00:00',
     api_key: '',
   },
+  {
+    card_id: 'card-r3v4k5l6',
+    agent_id: 'agent-orion-ops',
+    agent_name: 'Orion Operations Agent',
+    owner: '0xOPCBossNe0001',
+    status: 'REVOKED',
+    budget: {
+      currency: 'USDC',
+      monthly_max: 500.0,
+      spent: 320.0,
+      single_tx_limit: 75.0,
+    },
+    vendor_whitelist: [
+      { name: 'AWS', address: VENDOR_REGISTRY['AWS'], category: 'infra' },
+      { name: 'Vercel', address: VENDOR_REGISTRY['Vercel'], category: 'infra' },
+    ],
+    cooldown_hours: 6,
+    time_window: {
+      start: '2026-05-01T00:00:00+00:00',
+      end: '2026-05-31T23:59:59+00:00',
+      allowed_hours_start: '00:00',
+      allowed_hours_end: '23:59',
+    },
+    created_at: '2026-05-01T08:00:00+00:00',
+    expires_at: '2026-05-31T23:59:59+00:00',
+    api_key: '',
+    assigned_agent_id: 'agent-orion-ops',
+    assigned_agent_name: 'Orion Operations Agent',
+    assigned_at: '2026-05-02T09:00:00+00:00',
+  },
 ];
 
 export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     tx_id: 'tx-001a2b3c4d',
     card_id: 'card-a1b2c3d4',
-    agent_id: 'agent-content-agent-e1f2',
+    agent_id: 'agent-vega-research',
     timestamp: '2026-06-07T09:15:00+00:00',
     vendor: 'OpenAI',
     vendor_address: VENDOR_REGISTRY['OpenAI'],
@@ -385,7 +421,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     tx_id: 'tx-002e5f6g7h',
     card_id: 'card-a1b2c3d4',
-    agent_id: 'agent-content-agent-e1f2',
+    agent_id: 'agent-vega-research',
     timestamp: '2026-06-07T10:30:00+00:00',
     vendor: 'Midjourney',
     vendor_address: VENDOR_REGISTRY['Midjourney'],
@@ -401,7 +437,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     tx_id: 'tx-003i4j5k6l',
     card_id: 'card-a1b2c3d4',
-    agent_id: 'agent-content-agent-e1f2',
+    agent_id: 'agent-vega-research',
     timestamp: '2026-06-07T11:00:00+00:00',
     vendor: 'Unsplash',
     vendor_address: VENDOR_REGISTRY['Unsplash'],
@@ -417,7 +453,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     tx_id: 'tx-004m7n8o9p',
     card_id: 'card-e5f6g7h8',
-    agent_id: 'agent-ad-agent-g3h4',
+    agent_id: 'agent-lyra-growth',
     timestamp: '2026-06-07T09:00:00+00:00',
     vendor: 'Google Ads',
     vendor_address: VENDOR_REGISTRY['Google Ads'],
@@ -433,7 +469,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     tx_id: 'tx-005q1r2s3t',
     card_id: 'card-e5f6g7h8',
-    agent_id: 'agent-ad-agent-g3h4',
+    agent_id: 'agent-lyra-growth',
     timestamp: '2026-06-07T14:00:00+00:00',
     vendor: 'Twitter Ads',
     vendor_address: VENDOR_REGISTRY['Twitter Ads'],
@@ -442,14 +478,14 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     status: 'APPROVED',
     reason: 'All checks passed',
     remaining_budget: 650.0,
-    tx_hash: '0xpqr567stu890',
-    metadata: { purpose: 'Social media promotion' },
+    tx_hash: '0xmno345pqr678',
+    metadata: { purpose: 'Twitter/X promoted thread campaign' },
     alert_level: 'none',
   },
   {
     tx_id: 'tx-006u4v5w6x',
     card_id: 'card-a1b2c3d4',
-    agent_id: 'agent-content-agent-e1f2',
+    agent_id: 'agent-vega-research',
     timestamp: '2026-06-07T15:00:00+00:00',
     vendor: 'FakeCloudService',
     vendor_address: '0xUnknown',

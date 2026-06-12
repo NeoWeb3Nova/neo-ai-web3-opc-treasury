@@ -171,11 +171,11 @@ class MockCAWClient:
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         month_end = (month_start + timedelta(days=32)).replace(day=1) - timedelta(seconds=1)
 
-        # ── Card 1: Content Agent (ACTIVE, assigned) ──
+        # ── Card 1: Vega Research (ACTIVE, assigned) ──
         card1 = CardPact(
             card_id="card-a1b2c3d4",
-            agent_id="agent-content-agent-e1f2",
-            agent_name="Content Agent",
+            agent_id="agent-vega-research",
+            agent_name="Vega Research Agent",
             owner=self._owner,
             status="ACTIVE",
             budget=Budget(currency="USDC", monthly_max=200.0, spent=45.0, single_tx_limit=50.0),
@@ -194,16 +194,16 @@ class MockCAWClient:
             created_at=month_start.isoformat(),
             expires_at=month_end.isoformat(),
             api_key="caw_sk_a1b2c3d4e5f6",
-            assigned_agent_id="agent-content",
-            assigned_agent_name="Content Agent",
+            assigned_agent_id="agent-vega-research",
+            assigned_agent_name="Vega Research Agent",
             assigned_at=(month_start + timedelta(days=6, hours=9)).isoformat(),
         )
 
-        # ── Card 2: Ad Agent (ACTIVE, assigned) ──
+        # ── Card 2: Lyra Growth (ACTIVE, assigned) ──
         card2 = CardPact(
             card_id="card-e5f6g7h8",
-            agent_id="agent-ad-agent-g3h4",
-            agent_name="Ad Agent",
+            agent_id="agent-lyra-growth",
+            agent_name="Lyra Growth Agent",
             owner=self._owner,
             status="ACTIVE",
             budget=Budget(currency="USDC", monthly_max=800.0, spent=150.0, single_tx_limit=200.0),
@@ -221,8 +221,8 @@ class MockCAWClient:
             created_at=month_start.isoformat(),
             expires_at=month_end.isoformat(),
             api_key="caw_sk_e5f6g7h8i9j0",
-            assigned_agent_id="agent-ad",
-            assigned_agent_name="Ad Agent",
+            assigned_agent_id="agent-lyra-growth",
+            assigned_agent_name="Lyra Growth Agent",
             assigned_at=(month_start + timedelta(days=6, hours=9)).isoformat(),
         )
 
@@ -250,10 +250,41 @@ class MockCAWClient:
             api_key="",
         )
 
+        # ── Card 4: Orion Operations (REVOKED, expired) ──
+        prev_month_start = (now.replace(day=1) - timedelta(days=1)).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        prev_month_end = (prev_month_start + timedelta(days=32)).replace(day=1) - timedelta(seconds=1)
+
+        card4 = CardPact(
+            card_id="card-r3v4k5l6",
+            agent_id="agent-orion-ops",
+            agent_name="Orion Operations Agent",
+            owner=self._owner,
+            status="REVOKED",
+            budget=Budget(currency="USDC", monthly_max=500.0, spent=320.0, single_tx_limit=75.0),
+            vendor_whitelist=[
+                Vendor(name="AWS", address=self._vendor_registry["AWS"], category="infra"),
+                Vendor(name="Vercel", address=self._vendor_registry["Vercel"], category="infra"),
+            ],
+            cooldown_hours=6,
+            time_window=TimeWindow(
+                start=prev_month_start.isoformat(),
+                end=prev_month_end.isoformat(),
+                allowed_hours_start="00:00",
+                allowed_hours_end="23:59",
+            ),
+            created_at=prev_month_start.isoformat(),
+            expires_at=prev_month_end.isoformat(),
+            api_key="",
+            assigned_agent_id="agent-orion-ops",
+            assigned_agent_name="Orion Operations Agent",
+            assigned_at=(prev_month_start + timedelta(days=1, hours=9)).isoformat(),
+        )
+
         self._cards = {
             card1.card_id: card1,
             card2.card_id: card2,
             card3.card_id: card3,
+            card4.card_id: card4,
         }
         self._used_api_keys.update({c.api_key for c in self._cards.values() if c.api_key})
 
@@ -262,7 +293,7 @@ class MockCAWClient:
         self._transactions = [
             Transaction(
                 tx_id="tx-001a2b3c4d", card_id="card-a1b2c3d4",
-                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=9, minutes=15)).isoformat(),
+                agent_id="agent-vega-research", timestamp=(tx_base + timedelta(hours=9, minutes=15)).isoformat(),
                 vendor="OpenAI", vendor_address=self._vendor_registry["OpenAI"],
                 amount=10.0, currency="USDC", status="APPROVED",
                 reason="All checks passed", remaining_budget=190.0,
@@ -270,7 +301,7 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-002e5f6g7h", card_id="card-a1b2c3d4",
-                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=10, minutes=30)).isoformat(),
+                agent_id="agent-vega-research", timestamp=(tx_base + timedelta(hours=10, minutes=30)).isoformat(),
                 vendor="Midjourney", vendor_address=self._vendor_registry["Midjourney"],
                 amount=30.0, currency="USDC", status="APPROVED",
                 reason="All checks passed", remaining_budget=160.0,
@@ -278,7 +309,7 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-003i4j5k6l", card_id="card-a1b2c3d4",
-                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=11)).isoformat(),
+                agent_id="agent-vega-research", timestamp=(tx_base + timedelta(hours=11)).isoformat(),
                 vendor="Unsplash", vendor_address=self._vendor_registry["Unsplash"],
                 amount=5.0, currency="USDC", status="APPROVED",
                 reason="All checks passed", remaining_budget=155.0,
@@ -286,7 +317,7 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-004m7n8o9p", card_id="card-e5f6g7h8",
-                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=9)).isoformat(),
+                agent_id="agent-lyra-growth", timestamp=(tx_base + timedelta(hours=9)).isoformat(),
                 vendor="Google Ads", vendor_address=self._vendor_registry["Google Ads"],
                 amount=100.0, currency="USDC", status="APPROVED",
                 reason="All checks passed", remaining_budget=700.0,
@@ -294,15 +325,15 @@ class MockCAWClient:
             ),
             Transaction(
                 tx_id="tx-005q1r2s3t", card_id="card-e5f6g7h8",
-                agent_id="agent-ad", timestamp=(tx_base + timedelta(hours=14)).isoformat(),
+                agent_id="agent-lyra-growth", timestamp=(tx_base + timedelta(hours=14)).isoformat(),
                 vendor="Twitter Ads", vendor_address=self._vendor_registry["Twitter Ads"],
                 amount=50.0, currency="USDC", status="APPROVED",
                 reason="All checks passed", remaining_budget=650.0,
-                tx_hash="0xpqr567stu890", metadata={"purpose": "Social media promotion"},
+                tx_hash="0xmno345pqr678", metadata={"purpose": "Twitter/X promoted thread campaign"},
             ),
             Transaction(
                 tx_id="tx-006u4v5w6x", card_id="card-a1b2c3d4",
-                agent_id="agent-content", timestamp=(tx_base + timedelta(hours=15)).isoformat(),
+                agent_id="agent-vega-research", timestamp=(tx_base + timedelta(hours=15)).isoformat(),
                 vendor="FakeCloudService", vendor_address="0xUnknown",
                 amount=999.0, currency="USDC", status="DENIED",
                 reason="Vendor not on card whitelist", remaining_budget=155.0,
