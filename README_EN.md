@@ -1,34 +1,30 @@
-<div align="center">
-  <h1>OPC Agent Treasury</h1>
-  <p><strong>AI Employee Finance OS for One-Person Companies</strong></p>
-  <p>Issue programmable CAW spending cards to AI agents, let them pay x402 services, and keep every dollar scoped, revocable, and auditable.</p>
-  <p>
-    <img alt="Hackathon" src="https://img.shields.io/badge/Hackathon-AI%20%C3%97%20Web3%20Agentic%20Builders-6E56CF">
-    <img alt="Track" src="https://img.shields.io/badge/Track-Cobo%20Agentic%20Wallet-111827">
-    <img alt="Backend" src="https://img.shields.io/badge/Backend-FastAPI%20%2B%20Python%203.10%2B-009688">
-    <img alt="Frontend" src="https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite%208-61DAFB">
-    <img alt="Wallet" src="https://img.shields.io/badge/Wallet-Cobo%20CAW%20SDK%200.1.40-F59E0B">
-    <img alt="Status" src="https://img.shields.io/badge/Status-MVP%20Ready-success">
-  </p>
-</div>
+# OPC Agent Treasury
+
+**AI Employee Finance OS for One-Person Companies**
+
+Issue programmable CAW spending cards to AI agents, let them pay x402 services, and keep every dollar scoped, revocable, and auditable.
+
+
 
 ---
 
 ## 0. Hackathon Submission Summary
 
-| Item | Status | Evidence |
-|---|---:|---|
-| GitHub repository README | Complete | This file |
-| Project background / problem | Complete | Sections 1–2 |
-| Installation and run guide | Complete | Section 7 |
-| Core features | Complete | Section 3 |
-| Technical architecture | Complete | Section 4 |
-| APIs / SDKs / AI tools used | Complete | Section 5 |
-| CAW key code and configuration | Complete | `src/real_caw_client.py`, `.env.example`, `docs/CAW-REAL-MODE-SOP.md` |
-| Runnable prototype | Complete | FastAPI backend, React UI, Streamlit UI, CLI demo |
-| On-chain / CAW evidence | Complete | Section 9, `docs/cobo-caw-research/report-v2.md` |
-| Demo video | To be added | `demo/video/` |
-| Live demo link | Local runnable | `http://localhost:5173`, `http://localhost:8000`, `http://localhost:8501` |
+
+| Item                           | Status         | Evidence                                                                  |
+| ------------------------------ | -------------- | ------------------------------------------------------------------------- |
+| GitHub repository README       | Complete       | This file                                                                 |
+| Project background / problem   | Complete       | Sections 1–2                                                              |
+| Installation and run guide     | Complete       | Section 7                                                                 |
+| Core features                  | Complete       | Section 3                                                                 |
+| Technical architecture         | Complete       | Section 4                                                                 |
+| APIs / SDKs / AI tools used    | Complete       | Section 5                                                                 |
+| CAW key code and configuration | Complete       | `src/real_caw_client.py`, `.env.example`, `docs/CAW-REAL-MODE-SOP.md`     |
+| Runnable prototype             | Complete       | FastAPI backend, React UI, Streamlit UI, CLI demo                         |
+| On-chain / CAW evidence        | Complete       | Section 9, `docs/cobo-caw-research/report-v2.md`                          |
+| Demo video                     | To be added    | `demo/video/`                                                             |
+| Live demo link                 | Local runnable | `http://localhost:5173`, `http://localhost:8000`, `http://localhost:8501` |
+
 
 **Primary track:** Cobo Track — Agentic Economy × Cobo Agentic Wallet  
 **Primary direction:** Agent-Native Payments + Agent Resource Procurement + A2A Economy  
@@ -46,13 +42,15 @@ But money still has an old-world bottleneck:
 
 That is not a business operating system. That is an accident waiting to happen.
 
-| Existing option | Why it fails for AI employees |
-|---|---|
-| Give the agent a private key | One compromised prompt, plugin, or runtime can drain the wallet. |
-| Keep all payments human-approved | The agent stops being autonomous; every 402/API/payment blocks the founder. |
+
+| Existing option                    | Why it fails for AI employees                                                                 |
+| ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| Give the agent a private key       | One compromised prompt, plugin, or runtime can drain the wallet.                              |
+| Keep all payments human-approved   | The agent stops being autonomous; every 402/API/payment blocks the founder.                   |
 | Use corporate cards like Brex/Ramp | Designed for human employees and jurisdictional company onboarding, not wallet-native agents. |
-| Use a multisig | Secure for large treasury moves; too heavy for high-frequency micro-procurement. |
-| Use an API key subscription model | Requires pre-registration with every vendor; incompatible with open agent commerce. |
+| Use a multisig                     | Secure for large treasury moves; too heavy for high-frequency micro-procurement.              |
+| Use an API key subscription model  | Requires pre-registration with every vendor; incompatible with open agent commerce.           |
+
 
 **OPC Agent Treasury** solves the missing middle layer: AI agents can spend real money, but only inside owner-approved policies that are enforced by wallet infrastructure rather than agent self-discipline.
 
@@ -81,13 +79,15 @@ Then the AI employee can autonomously pay x402/API/service providers without eve
 Agent autonomy is useful only when the blast radius is mathematically bounded.
 ```
 
-| AI employee can | AI employee cannot |
-|---|---|
-| Pay approved vendors within budget | Export or access the private key |
-| Use a Pact-scoped CAW permission | Spend outside the Pact policy |
-| Trigger x402-style per-request payments | Change its own whitelist or limits |
-| Execute repeatable business workflows | Revoke owner authority |
-| Produce audit records for review | Hide denied attempts from the owner |
+
+| AI employee can                         | AI employee cannot                  |
+| --------------------------------------- | ----------------------------------- |
+| Pay approved vendors within budget      | Export or access the private key    |
+| Use a Pact-scoped CAW permission        | Spend outside the Pact policy       |
+| Trigger x402-style per-request payments | Change its own whitelist or limits  |
+| Execute repeatable business workflows   | Revoke owner authority              |
+| Produce audit records for review        | Hide denied attempts from the owner |
+
 
 ---
 
@@ -97,24 +97,28 @@ Agent autonomy is useful only when the blast radius is mathematically bounded.
 
 Each card maps to a CAW Pact. In mock mode, the same interface is simulated locally for fast demos and tests. In real mode, the backend submits a real Pact to Cobo Agentic Wallet.
 
-| Control | Implementation | Why it matters |
-|---|---|---|
-| Monthly budget | CAW `usage_limits.rolling_30d.amount_usd_gt` + local UI accounting | Prevents slow-drain attacks. |
-| Single transaction cap | CAW `deny_if.amount_usd_gt` | Blocks inflated vendor requests. |
-| Vendor allowlist | CAW `destination_address_in` | Prevents prompt-injected payments to attacker addresses. |
-| Token / chain scope | CAW `token_in` and `chain_in` | Keeps spend on approved settlement rails. |
-| Expiration | CAW `completion_conditions.time_elapsed` | Makes temporary employee permissions expire automatically. |
-| Spend completion | CAW `completion_conditions.amount_spent_usd` | Ends a Pact after its budget is consumed. |
-| ERC-8004 signing scope | CAW `message_sign` policy for `AgentWalletSet` EIP-712 typed data | Binds agent identity/reputation operations to allowed registry domains. |
-| Cooldown | Local policy layer before transfer | Adds business-level anti-spam/frequency control. |
-| Assignment | Backend requires an active card to be assigned to one digital employee before payment | Prevents a generic or wrong agent from using another employee’s card. |
+
+| Control                | Implementation                                                                        | Why it matters                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Monthly budget         | CAW `usage_limits.rolling_30d.amount_usd_gt` + local UI accounting                    | Prevents slow-drain attacks.                                            |
+| Single transaction cap | CAW `deny_if.amount_usd_gt`                                                           | Blocks inflated vendor requests.                                        |
+| Vendor allowlist       | CAW `destination_address_in`                                                          | Prevents prompt-injected payments to attacker addresses.                |
+| Token / chain scope    | CAW `token_in` and `chain_in`                                                         | Keeps spend on approved settlement rails.                               |
+| Expiration             | CAW `completion_conditions.time_elapsed`                                              | Makes temporary employee permissions expire automatically.              |
+| Spend completion       | CAW `completion_conditions.amount_spent_usd`                                          | Ends a Pact after its budget is consumed.                               |
+| ERC-8004 signing scope | CAW `message_sign` policy for `AgentWalletSet` EIP-712 typed data                     | Binds agent identity/reputation operations to allowed registry domains. |
+| Cooldown               | Local policy layer before transfer                                                    | Adds business-level anti-spam/frequency control.                        |
+| Assignment             | Backend requires an active card to be assigned to one digital employee before payment | Prevents a generic or wrong agent from using another employee’s card.   |
+
 
 ### 3.2 Mock Mode and Real CAW Mode
 
-| Mode | Use case | External dependency | Entry point |
-|---|---|---|---|
-| `CAW_MODE=mock` | Hackathon judging, CI, offline demo | None beyond Python dependencies | `src/mock_caw_client.py` |
-| `CAW_MODE=real` | Real CAW wallet, Pact, balance, transfer, audit testing | Cobo CAW SDK/API/App | `src/real_caw_client.py` |
+
+| Mode            | Use case                                                | External dependency             | Entry point              |
+| --------------- | ------------------------------------------------------- | ------------------------------- | ------------------------ |
+| `CAW_MODE=mock` | Hackathon judging, CI, offline demo                     | None beyond Python dependencies | `src/mock_caw_client.py` |
+| `CAW_MODE=real` | Real CAW wallet, Pact, balance, transfer, audit testing | Cobo CAW SDK/API/App            | `src/real_caw_client.py` |
+
 
 The factory in `src/caw_factory.py` keeps the rest of the system independent of the selected mode.
 
@@ -133,13 +137,15 @@ This gives the UI a realistic path: select a vendor, issue a CAW card, bind it t
 
 OPC Agent Treasury models AI staff as first-class treasury actors:
 
-| Employee | Agent ID | Role | Risk tier | Recommended policy |
-|---|---|---|---|---|
-| Watt Infrastructure Agent | `agent-watt-infra` | RPC, deployment checks, infrastructure monitoring | Low | $250/month, $25/tx, 2h cooldown |
-| Vega Research Agent | `agent-vega-research` | Market and protocol research | Medium | $300/month, $40/tx, 4h cooldown |
-| Lyra Growth Agent | `agent-lyra-growth` | Paid growth and campaign experiments | High | $800/month, $120/tx, 8h cooldown |
-| Orion Operations Agent | `agent-orion-ops` | Procurement and payment orchestration | Medium | $500/month, $75/tx, 6h cooldown |
-| Nova Operations Agent | `agent-nova-ops` | Cashflow, reconciliation, exception review | Medium | $400/month, $60/tx, 6h cooldown |
+
+| Employee                  | Agent ID              | Role                                              | Risk tier | Recommended policy               |
+| ------------------------- | --------------------- | ------------------------------------------------- | --------- | -------------------------------- |
+| Watt Infrastructure Agent | `agent-watt-infra`    | RPC, deployment checks, infrastructure monitoring | Low       | $250/month, $25/tx, 2h cooldown  |
+| Vega Research Agent       | `agent-vega-research` | Market and protocol research                      | Medium    | $300/month, $40/tx, 4h cooldown  |
+| Lyra Growth Agent         | `agent-lyra-growth`   | Paid growth and campaign experiments              | High      | $800/month, $120/tx, 8h cooldown |
+| Orion Operations Agent    | `agent-orion-ops`     | Procurement and payment orchestration             | Medium    | $500/month, $75/tx, 6h cooldown  |
+| Nova Operations Agent     | `agent-nova-ops`      | Cashflow, reconciliation, exception review        | Medium    | $400/month, $60/tx, 6h cooldown  |
+
 
 ### 3.5 Payment Policy Engine
 
@@ -175,24 +181,28 @@ Every payment request is evaluated before CAW transfer submission:
 
 The demo includes executable security scenarios rather than slide-only claims.
 
-| ID | Attack | Defense | Demo endpoint / file |
-|---|---|---|---|
-| A1 | Prompt injection sends funds to attacker address | Vendor allowlist | `POST /attacks/a1`, `src/threat_simulator.py` |
-| A2 | Legitimate vendor inflates price | Per-transaction cap | `POST /attacks/a2` |
-| A3 | Scope bypass to unapproved service | Destination whitelist | `POST /attacks/a3` |
-| A4 | Budget exhaustion via repeated small payments | Rolling budget + cooldown | `POST /attacks/a4` |
-| A5 | Reuse of revoked card | Card status check | `POST /attacks/a5` |
+
+| ID  | Attack                                           | Defense                   | Demo endpoint / file                          |
+| --- | ------------------------------------------------ | ------------------------- | --------------------------------------------- |
+| A1  | Prompt injection sends funds to attacker address | Vendor allowlist          | `POST /attacks/a1`, `src/threat_simulator.py` |
+| A2  | Legitimate vendor inflates price                 | Per-transaction cap       | `POST /attacks/a2`                            |
+| A3  | Scope bypass to unapproved service               | Destination whitelist     | `POST /attacks/a3`                            |
+| A4  | Budget exhaustion via repeated small payments    | Rolling budget + cooldown | `POST /attacks/a4`                            |
+| A5  | Reuse of revoked card                            | Card status check         | `POST /attacks/a5`                            |
+
 
 The broader design documentation covers eight attack classes in `docs/03-attack-matrix.md`: replay, MITM/address tampering, budget exhaustion, rogue provider, privilege escalation, time-window bypass, signature forgery, and audit tampering.
 
 ### 3.7 Multi-Interface Demo
 
-| Interface | Audience | Purpose |
-|---|---|---|
+
+| Interface            | Audience                        | Purpose                                                                         |
+| -------------------- | ------------------------------- | ------------------------------------------------------------------------------- |
 | React + Vite web app | Hackathon judges / product demo | Dashboard, cards, employee assignment, agent console, attack demo, audit report |
-| FastAPI backend | Developers / integrations | REST API around mock/real CAW clients |
-| Streamlit dashboard | Fast local presentation | Pact manager, agent ops, threat lab, audit views |
-| CLI demo | Terminal-first verification | Normal flow, attack flow, full flow, A2A coordination |
+| FastAPI backend      | Developers / integrations       | REST API around mock/real CAW clients                                           |
+| Streamlit dashboard  | Fast local presentation         | Pact manager, agent ops, threat lab, audit views                                |
+| CLI demo             | Terminal-first verification     | Normal flow, attack flow, full flow, A2A coordination                           |
+
 
 ---
 
@@ -242,39 +252,43 @@ The broader design documentation covers eight attack classes in `docs/03-attack-
 
 ### 4.2 Protocol Stack
 
-| Layer | Protocol / component | Project role |
-|---|---|---|
-| Business scenario | OPC digital employees | Defines who is allowed to spend and why. |
-| Payment discovery | x402 / HTTP 402 pattern | Agent receives a payment requirement and pays per request. |
-| Agent identity | ERC-8004 | Provider/employee identity and reputation context. |
-| Wallet authorization | Cobo CAW Pact | Owner-approved, scoped wallet permission. |
-| Policy enforcement | CAW Policy Engine + local business checks | Final guardrail before funds move. |
-| Settlement | CAW transfer APIs on Base / supported chains | Executes token transfers in real mode. |
-| Audit | CAW audit logs + local transaction records | Produces reviewable evidence for the owner. |
+
+| Layer                | Protocol / component                         | Project role                                               |
+| -------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| Business scenario    | OPC digital employees                        | Defines who is allowed to spend and why.                   |
+| Payment discovery    | x402 / HTTP 402 pattern                      | Agent receives a payment requirement and pays per request. |
+| Agent identity       | ERC-8004                                     | Provider/employee identity and reputation context.         |
+| Wallet authorization | Cobo CAW Pact                                | Owner-approved, scoped wallet permission.                  |
+| Policy enforcement   | CAW Policy Engine + local business checks    | Final guardrail before funds move.                         |
+| Settlement           | CAW transfer APIs on Base / supported chains | Executes token transfers in real mode.                     |
+| Audit                | CAW audit logs + local transaction records   | Produces reviewable evidence for the owner.                |
+
 
 ### 4.3 Backend API Surface
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/health` | Backend and CAW mode health check |
-| `GET` | `/config` | Default chain/token and mode |
-| `GET` | `/providers/x402` | Curated/live x402 provider list |
-| `GET` | `/erc8004/agents` | ERC-8004 agent registry examples |
-| `GET` | `/erc8004/agents/search?q=...` | Live 8004scan search with fallback |
-| `GET` | `/marketplace/context` | x402scan and ERC-8004 ecosystem context |
-| `GET` | `/agents/digital-employees` | OPC AI employee directory |
-| `GET` | `/wallet/balance` | Real CAW wallet balance, if configured |
-| `POST` | `/cards` | Create a CAW card/Pact |
-| `GET` | `/cards` | List cards with recomputed spend |
-| `POST` | `/cards/{card_id}/approve` | Wait for mock/real Pact activation |
-| `POST` | `/cards/{card_id}/assign` | Assign an active card to one digital employee |
-| `POST` | `/cards/{card_id}/revoke` | Revoke locally or request CAW revoke flow |
-| `POST` | `/payments` | Submit scoped payment from assigned agent |
-| `GET` | `/transactions` | List transaction records |
-| `GET` | `/audit/summary` | Monthly spending and anomaly summary |
-| `POST` | `/attacks/{attack_id}` | Execute one threat scenario |
-| `GET` | `/dashboard` | Aggregated cards + transactions + summary |
-| `POST` | `/demo/reset` | Reset mock demo state |
+
+| Method | Endpoint                       | Purpose                                       |
+| ------ | ------------------------------ | --------------------------------------------- |
+| `GET`  | `/health`                      | Backend and CAW mode health check             |
+| `GET`  | `/config`                      | Default chain/token and mode                  |
+| `GET`  | `/providers/x402`              | Curated/live x402 provider list               |
+| `GET`  | `/erc8004/agents`              | ERC-8004 agent registry examples              |
+| `GET`  | `/erc8004/agents/search?q=...` | Live 8004scan search with fallback            |
+| `GET`  | `/marketplace/context`         | x402scan and ERC-8004 ecosystem context       |
+| `GET`  | `/agents/digital-employees`    | OPC AI employee directory                     |
+| `GET`  | `/wallet/balance`              | Real CAW wallet balance, if configured        |
+| `POST` | `/cards`                       | Create a CAW card/Pact                        |
+| `GET`  | `/cards`                       | List cards with recomputed spend              |
+| `POST` | `/cards/{card_id}/approve`     | Wait for mock/real Pact activation            |
+| `POST` | `/cards/{card_id}/assign`      | Assign an active card to one digital employee |
+| `POST` | `/cards/{card_id}/revoke`      | Revoke locally or request CAW revoke flow     |
+| `POST` | `/payments`                    | Submit scoped payment from assigned agent     |
+| `GET`  | `/transactions`                | List transaction records                      |
+| `GET`  | `/audit/summary`               | Monthly spending and anomaly summary          |
+| `POST` | `/attacks/{attack_id}`         | Execute one threat scenario                   |
+| `GET`  | `/dashboard`                   | Aggregated cards + transactions + summary     |
+| `POST` | `/demo/reset`                  | Reset mock demo state                         |
+
 
 ### 4.4 Repository Structure
 
@@ -334,57 +348,65 @@ The broader design documentation covers eight attack classes in `docs/03-attack-
 
 ### 5.1 Blockchain / Wallet / Agent-Commerce Stack
 
-| Tool / API / SDK | Version / source | Used for | Where |
-|---|---|---|---|
-| Cobo Agentic Wallet Python SDK | `cobo-agentic-wallet>=0.1.40` | Submit Pacts, read Pacts, transfer tokens, inspect balances/transactions | `backend/requirements.txt`, `src/real_caw_client.py` |
-| Cobo CAW REST API | `AGENT_WALLET_API_URL` | Sync HTTP fallback for balances, Pacts, transfers, transactions | `src/real_caw_client.py` |
-| Cobo CAW App | Mobile owner approval | Approve/reject/revoke Pacts and protect owner key share | `docs/CAW-REAL-MODE-SOP.md` |
-| CAW Pact Policy Engine | CAW platform | Transfer policy, message-sign policy, budget limits, destination allowlists | `src/real_caw_client.py` |
-| CAW CLI | `caw` | Wallet onboarding, API key retrieval, Pact operations, faucet | `docs/CAW-REAL-MODE-SOP.md` |
-| x402 | Protocol pattern / marketplace context | Agent-native pay-per-request payment flow | `src/service_registry.py`, `docs/05-flow.md` |
-| ERC-8004 | Identity/reputation standard | Agent identity, reputation context, EIP-712 `AgentWalletSet` policy | `src/real_caw_client.py`, `src/service_registry.py` |
-| ERC-8183 | Escrow/evaluator design layer | Future conditional acceptance, dispute, and escrow layer | `docs/04-architecture.md`, `docs/06-risks.md` |
-| Base / Base Sepolia | Chain context | USDC settlement target and verified testnet evidence | `.env.example`, Section 9 |
-| USDC | `BASE_USDC` | Default spending denomination | `.env.example`, `src/real_caw_client.py` |
+
+| Tool / API / SDK               | Version / source                       | Used for                                                                    | Where                                                |
+| ------------------------------ | -------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Cobo Agentic Wallet Python SDK | `cobo-agentic-wallet>=0.1.40`          | Submit Pacts, read Pacts, transfer tokens, inspect balances/transactions    | `backend/requirements.txt`, `src/real_caw_client.py` |
+| Cobo CAW REST API              | `AGENT_WALLET_API_URL`                 | Sync HTTP fallback for balances, Pacts, transfers, transactions             | `src/real_caw_client.py`                             |
+| Cobo CAW App                   | Mobile owner approval                  | Approve/reject/revoke Pacts and protect owner key share                     | `docs/CAW-REAL-MODE-SOP.md`                          |
+| CAW Pact Policy Engine         | CAW platform                           | Transfer policy, message-sign policy, budget limits, destination allowlists | `src/real_caw_client.py`                             |
+| CAW CLI                        | `caw`                                  | Wallet onboarding, API key retrieval, Pact operations, faucet               | `docs/CAW-REAL-MODE-SOP.md`                          |
+| x402                           | Protocol pattern / marketplace context | Agent-native pay-per-request payment flow                                   | `src/service_registry.py`, `docs/05-flow.md`         |
+| ERC-8004                       | Identity/reputation standard           | Agent identity, reputation context, EIP-712 `AgentWalletSet` policy         | `src/real_caw_client.py`, `src/service_registry.py`  |
+| ERC-8183                       | Escrow/evaluator design layer          | Future conditional acceptance, dispute, and escrow layer                    | `docs/04-architecture.md`, `docs/06-risks.md`        |
+| Base / Base Sepolia            | Chain context                          | USDC settlement target and verified testnet evidence                        | `.env.example`, Section 9                            |
+| USDC                           | `BASE_USDC`                            | Default spending denomination                                               | `.env.example`, `src/real_caw_client.py`             |
+
 
 ### 5.2 Backend Stack
 
-| Technology | Version / constraint | Purpose |
-|---|---|---|
-| Python | 3.10+ | Backend, CAW client, demo agents |
-| FastAPI | `>=0.111.0` | REST API |
-| Uvicorn | `>=0.30.0` | ASGI server |
-| Pydantic | `>=2.7.0` | API schema validation |
-| python-dotenv | `>=1.0.0` | `.env` loading |
-| nest-asyncio | `>=1.6.0` | Async SDK bridge when needed |
-| Streamlit | `>=1.35.0` | Alternative live demo UI |
-| pandas | `>=2.0.0` | Dashboard tables / reporting |
-| pytest + FastAPI TestClient | Test dependencies used in repo | API and policy regression tests |
+
+| Technology                  | Version / constraint           | Purpose                          |
+| --------------------------- | ------------------------------ | -------------------------------- |
+| Python                      | 3.10+                          | Backend, CAW client, demo agents |
+| FastAPI                     | `>=0.111.0`                    | REST API                         |
+| Uvicorn                     | `>=0.30.0`                     | ASGI server                      |
+| Pydantic                    | `>=2.7.0`                      | API schema validation            |
+| python-dotenv               | `>=1.0.0`                      | `.env` loading                   |
+| nest-asyncio                | `>=1.6.0`                      | Async SDK bridge when needed     |
+| Streamlit                   | `>=1.35.0`                     | Alternative live demo UI         |
+| pandas                      | `>=2.0.0`                      | Dashboard tables / reporting     |
+| pytest + FastAPI TestClient | Test dependencies used in repo | API and policy regression tests  |
+
 
 ### 5.3 Frontend Stack
 
-| Technology | Version from `web/package.json` | Purpose |
-|---|---:|---|
-| React | `^19.2.6` | SPA UI |
-| React DOM | `^19.2.6` | DOM rendering |
-| Vite | `^8.0.12` | Dev server and build tool |
-| TypeScript | `~6.0.2` | Type-safe frontend |
-| Tailwind CSS | `^3.4.19` | Utility styling |
-| React Router DOM | `^7.17.0` | Routing |
-| Recharts | `^3.8.1` | Budget and audit charts |
-| Lucide React | `^1.17.0` | Icon system |
-| i18next / react-i18next | `^26.3.1` / `^17.0.8` | English/Chinese UI language support |
-| clsx / tailwind-merge | `^2.1.1` / `^3.6.0` | Conditional class composition |
+
+| Technology              | Version from `web/package.json` | Purpose                             |
+| ----------------------- | ------------------------------- | ----------------------------------- |
+| React                   | `^19.2.6`                       | SPA UI                              |
+| React DOM               | `^19.2.6`                       | DOM rendering                       |
+| Vite                    | `^8.0.12`                       | Dev server and build tool           |
+| TypeScript              | `~6.0.2`                        | Type-safe frontend                  |
+| Tailwind CSS            | `^3.4.19`                       | Utility styling                     |
+| React Router DOM        | `^7.17.0`                       | Routing                             |
+| Recharts                | `^3.8.1`                        | Budget and audit charts             |
+| Lucide React            | `^1.17.0`                       | Icon system                         |
+| i18next / react-i18next | `^26.3.1` / `^17.0.8`           | English/Chinese UI language support |
+| clsx / tailwind-merge   | `^2.1.1` / `^3.6.0`             | Conditional class composition       |
+
 
 ### 5.4 AI Tools and Agent Roles
 
-| Tool / role | How it is used in this project |
-|---|---|
-| AI coding assistants | Assisted full-stack implementation, debugging, refactoring, and documentation under human review. |
-| Content Agent | Demo employee that buys OpenAI/Midjourney/Unsplash-like services inside a card budget. |
-| Ad Agent | Demo employee that buys Google Ads / Twitter Ads-like services. |
-| A2A Coordinator Agent | Demonstrates agent-to-agent task dispatch and budget rebalancing. |
-| Threat Simulation Agent | Executes adversarial scenarios to prove policy boundaries. |
+
+| Tool / role             | How it is used in this project                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------- |
+| AI coding assistants    | Assisted full-stack implementation, debugging, refactoring, and documentation under human review. |
+| Content Agent           | Demo employee that buys OpenAI/Midjourney/Unsplash-like services inside a card budget.            |
+| Ad Agent                | Demo employee that buys Google Ads / Twitter Ads-like services.                                   |
+| A2A Coordinator Agent   | Demonstrates agent-to-agent task dispatch and budget rebalancing.                                 |
+| Threat Simulation Agent | Executes adversarial scenarios to prove policy boundaries.                                        |
+
 
 The project does **not** require an LLM API key to run the default mock demo. AI-agent behavior in the repository is deterministic Python demo logic so judges can reproduce it quickly.
 
@@ -398,33 +420,39 @@ OPC Agent Treasury assumes the agent runtime may be compromised. Therefore the p
 
 Security is enforced at three layers:
 
-| Layer | Enforces | Example |
-|---|---|---|
-| CAW infrastructure | Wallet permission, signing, destination, token, rolling budget | Unknown destination address is denied by Pact policy. |
-| Backend business logic | Employee assignment, cooldown, UX-friendly errors, local audit | `agent-lyra-growth` cannot use Vega’s card. |
-| Owner controls | App approval, revocation, wallet backup, real-mode key management | Owner approves a Pact before it becomes active. |
+
+| Layer                  | Enforces                                                          | Example                                               |
+| ---------------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
+| CAW infrastructure     | Wallet permission, signing, destination, token, rolling budget    | Unknown destination address is denied by Pact policy. |
+| Backend business logic | Employee assignment, cooldown, UX-friendly errors, local audit    | `agent-lyra-growth` cannot use Vega’s card.           |
+| Owner controls         | App approval, revocation, wallet backup, real-mode key management | Owner approves a Pact before it becomes active.       |
+
 
 ### 6.2 Key Design Decisions
 
-| Decision | Reason |
-|---|---|
-| No private key in agent code | Agents only operate through CAW credentials and scoped Pacts. |
-| Pact per employee / task | Reduces blast radius and makes revocation precise. |
-| Vendor whitelist is mandatory | The most important defense against prompt injection and address tampering. |
-| Assignment required before payment | Prevents an active card from becoming a generic shared credential. |
-| Denied transactions are first-class audit records | A blocked attack is valuable evidence, not noise. |
-| Mock mode is kept | Judges and CI can reproduce the full product without external credentials. |
-| Real mode is kept | Proves this is not just a mockup; the same API shape can hit CAW. |
+
+| Decision                                          | Reason                                                                     |
+| ------------------------------------------------- | -------------------------------------------------------------------------- |
+| No private key in agent code                      | Agents only operate through CAW credentials and scoped Pacts.              |
+| Pact per employee / task                          | Reduces blast radius and makes revocation precise.                         |
+| Vendor whitelist is mandatory                     | The most important defense against prompt injection and address tampering. |
+| Assignment required before payment                | Prevents an active card from becoming a generic shared credential.         |
+| Denied transactions are first-class audit records | A blocked attack is valuable evidence, not noise.                          |
+| Mock mode is kept                                 | Judges and CI can reproduce the full product without external credentials. |
+| Real mode is kept                                 | Proves this is not just a mockup; the same API shape can hit CAW.          |
+
 
 ### 6.3 Known MVP Boundaries
 
-| Boundary | Current state | Production hardening path |
-|---|---|---|
-| x402 payment server | Flow and provider registry are modeled; old prototype lives under `src/_archive/` | Integrate a production x402 middleware/facilitator endpoint. |
-| ERC-8183 escrow | Architecture and risk model documented | Add escrow contract integration and evaluator workflow. |
-| On-chain audit immutability | CAW and local transaction records are used | Persist Merkle roots / receipts to chain or durable storage. |
-| Real vendor addresses | `.env.example` uses placeholders | Configure verified vendor addresses before real transfers. |
-| Mainnet funds | Demo uses testnet/sandbox posture | Start with low limits, owner approval, monitoring, and emergency revoke runbook. |
+
+| Boundary                    | Current state                                                                     | Production hardening path                                                        |
+| --------------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| x402 payment server         | Flow and provider registry are modeled; old prototype lives under `src/_archive/` | Integrate a production x402 middleware/facilitator endpoint.                     |
+| ERC-8183 escrow             | Architecture and risk model documented                                            | Add escrow contract integration and evaluator workflow.                          |
+| On-chain audit immutability | CAW and local transaction records are used                                        | Persist Merkle roots / receipts to chain or durable storage.                     |
+| Real vendor addresses       | `.env.example` uses placeholders                                                  | Configure verified vendor addresses before real transfers.                       |
+| Mainnet funds               | Demo uses testnet/sandbox posture                                                 | Start with low limits, owner approval, monitoring, and emergency revoke runbook. |
+
 
 ---
 
@@ -432,12 +460,14 @@ Security is enforced at three layers:
 
 ### 7.1 Prerequisites
 
-| Tool | Required for | Recommended version |
-|---|---|---|
-| Git | Clone repo | Latest |
-| Python | Backend, CLI, Streamlit | 3.10+ |
-| Node.js + npm | React frontend | Node 18+ |
-| Cobo CAW CLI/App | Real mode only | Latest from Cobo docs |
+
+| Tool             | Required for            | Recommended version   |
+| ---------------- | ----------------------- | --------------------- |
+| Git              | Clone repo              | Latest                |
+| Python           | Backend, CLI, Streamlit | 3.10+                 |
+| Node.js + npm    | React frontend          | Node 18+              |
+| Cobo CAW CLI/App | Real mode only          | Latest from Cobo docs |
+
 
 ### 7.2 Clone
 
@@ -477,17 +507,19 @@ VITE_API_URL=http://localhost:8000
 
 For real CAW mode, fill the CAW values in `.env`:
 
-| Variable | Required | Description |
-|---|---:|---|
-| `CAW_MODE` | Yes | `mock` or `real` |
-| `AGENT_WALLET_API_URL` | Real mode | Cobo Agentic Wallet API base URL |
-| `AGENT_WALLET_API_KEY` | Real mode | CAW API key from `caw wallet current --show-api-key` |
-| `AGENT_WALLET_WALLET_ID` | Real mode | CAW wallet UUID |
-| `CAW_DEFAULT_CHAIN` | Real mode | Default chain, e.g. `BASE_ETH` |
-| `CAW_DEFAULT_TOKEN` | Real mode | Default token, e.g. `BASE_USDC` |
-| `CAW_SRC_ADDR` / `AGENT_WALLET_ADDRESS` | Real transfers if balance API cannot infer source address | Source wallet address for CAW `transfer` payload |
-| `VENDOR_*_ADDR` | Real transfers | Real destination addresses for vendors |
-| `VITE_API_URL` | Frontend | Backend URL for Vite app |
+
+| Variable                                | Required                                                  | Description                                          |
+| --------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
+| `CAW_MODE`                              | Yes                                                       | `mock` or `real`                                     |
+| `AGENT_WALLET_API_URL`                  | Real mode                                                 | Cobo Agentic Wallet API base URL                     |
+| `AGENT_WALLET_API_KEY`                  | Real mode                                                 | CAW API key from `caw wallet current --show-api-key` |
+| `AGENT_WALLET_WALLET_ID`                | Real mode                                                 | CAW wallet UUID                                      |
+| `CAW_DEFAULT_CHAIN`                     | Real mode                                                 | Default chain, e.g. `BASE_ETH`                       |
+| `CAW_DEFAULT_TOKEN`                     | Real mode                                                 | Default token, e.g. `BASE_USDC`                      |
+| `CAW_SRC_ADDR` / `AGENT_WALLET_ADDRESS` | Real transfers if balance API cannot infer source address | Source wallet address for CAW `transfer` payload     |
+| `VENDOR_*_ADDR`                         | Real transfers                                            | Real destination addresses for vendors               |
+| `VITE_API_URL`                          | Frontend                                                  | Backend URL for Vite app                             |
+
 
 Never commit `.env` or real API keys.
 
@@ -528,13 +560,15 @@ http://localhost:5173
 
 Frontend pages:
 
-| Route | Page |
-|---|---|
-| `/` | Dashboard |
-| `/cards` | CAW cards / Pacts |
-| `/agent` | Agent payment console |
-| `/attack` | Threat lab |
-| `/audit` | Audit report |
+
+| Route     | Page                  |
+| --------- | --------------------- |
+| `/`       | Dashboard             |
+| `/cards`  | CAW cards / Pacts     |
+| `/agent`  | Agent payment console |
+| `/attack` | Threat lab            |
+| `/audit`  | Audit report          |
+
 
 ### 7.7 Run Streamlit Demo UI
 
@@ -609,16 +643,18 @@ Important real-mode implementation notes:
 
 These records are kept from the project’s CAW real-mode validation and proposal materials.
 
-| Evidence | Value |
-|---|---|
-| CAW Wallet UUID | `ad7f3253-4a3b-48a0-9d09-9bb59d334390` |
-| Wallet ETH address | `0x0abd808e6df088b9b97179a091582618586d0bdc` |
+
+| Evidence                        | Value                                                                |
+| ------------------------------- | -------------------------------------------------------------------- |
+| CAW Wallet UUID                 | `ad7f3253-4a3b-48a0-9d09-9bb59d334390`                               |
+| Wallet ETH address              | `0x0abd808e6df088b9b97179a091582618586d0bdc`                         |
 | Successful transfer transaction | `0x1a119f1b1bf5ffdb9f2dc4bea392d5d489807aa97925c1949199f7ea91c9dddd` |
-| Transfer amount | `0.001 SETH` on Base Sepolia test environment |
-| CAW Pact instance | `13328473-3868-4f45-a35e-ae2a8a1e1ea4` |
-| Pact policy summary | `BASE_USDC`, `$50/tx`, `$500/month` |
-| SDK version | `cobo-agentic-wallet>=0.1.40` |
-| Detailed report | `docs/cobo-caw-research/report-v2.md` |
+| Transfer amount                 | `0.001 SETH` on Base Sepolia test environment                        |
+| CAW Pact instance               | `13328473-3868-4f45-a35e-ae2a8a1e1ea4`                               |
+| Pact policy summary             | `BASE_USDC`, `$50/tx`, `$500/month`                                  |
+| SDK version                     | `cobo-agentic-wallet>=0.1.40`                                        |
+| Detailed report                 | `docs/cobo-caw-research/report-v2.md`                                |
+
 
 Testnet / sandbox posture: no mainnet funds are required for judging the default demo.
 
@@ -671,13 +707,15 @@ curl http://localhost:8000/marketplace/context
 
 The Cobo track requires an agent funding scenario where CAW is essential, not decorative. In OPC Agent Treasury, CAW is the core control plane:
 
-| Track requirement | Project answer |
-|---|---|
-| Agent performs funds operation | AI employees submit scoped payment requests. |
-| Uses Cobo Agentic Wallet | Real CAW SDK/REST client creates Pacts and transfers tokens. |
-| Demonstrates permission control | Pacts enforce chain/token/destination/budget/message-sign scopes. |
-| Runnable demo | Mock mode runs locally; real mode has SOP and validation evidence. |
-| Shows risk boundaries | Threat lab, risk docs, fail-closed policy model, audit logs. |
+
+| Track requirement               | Project answer                                                     |
+| ------------------------------- | ------------------------------------------------------------------ |
+| Agent performs funds operation  | AI employees submit scoped payment requests.                       |
+| Uses Cobo Agentic Wallet        | Real CAW SDK/REST client creates Pacts and transfers tokens.       |
+| Demonstrates permission control | Pacts enforce chain/token/destination/budget/message-sign scopes.  |
+| Runnable demo                   | Mock mode runs locally; real mode has SOP and validation evidence. |
+| Shows risk boundaries           | Threat lab, risk docs, fail-closed policy model, audit logs.       |
+
 
 ### 11.2 It solves a real pain, not a sci-fi demo
 
@@ -687,13 +725,15 @@ This is why the product uses the language of employee cards, limits, vendors, ap
 
 ### 11.3 It has technical depth beyond CRUD
 
-| Depth area | Evidence |
-|---|---|
-| CAW policy mapping | `src/real_caw_client.py` maps card controls into CAW transfer and message-sign policies. |
-| Real SDK integration | SDK and REST calls handle balances, Pacts, transfers, transactions, and API-key scope issues. |
+
+| Depth area              | Evidence                                                                                      |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| CAW policy mapping      | `src/real_caw_client.py` maps card controls into CAW transfer and message-sign policies.      |
+| Real SDK integration    | SDK and REST calls handle balances, Pacts, transfers, transactions, and API-key scope issues. |
 | x402 / ERC-8004 context | `src/service_registry.py` connects payment providers with agent identity/reputation metadata. |
-| Security modeling | `docs/03-attack-matrix.md`, `docs/06-risks.md`, `src/threat_simulator.py` |
-| Full-stack product | FastAPI + React + Streamlit + CLI + tests |
+| Security modeling       | `docs/03-attack-matrix.md`, `docs/06-risks.md`, `src/threat_simulator.py`                     |
+| Full-stack product      | FastAPI + React + Streamlit + CLI + tests                                                     |
+
 
 ### 11.4 It is demo-ready
 
@@ -709,43 +749,49 @@ The project gives judges multiple ways to verify it:
 
 ## 12. Roadmap
 
-| Phase | Goal | Key work |
-|---|---|---|
-| Hackathon MVP | Prove safe AI employee spending | Mock/real CAW client, cards, assignment, payments, threat lab, dashboard |
-| Post-hackathon P0 | Productionize payment path | Real x402 middleware, facilitator verification, robust idempotency, persistent DB |
-| Phase 1 | Real OPC beta | Vendor onboarding, owner notification, SSE event stream, CAW App runbook, better audit exports |
-| Phase 2 | Protocol integrations | ERC-8183 escrow/evaluator, richer ERC-8004 trust scoring, service quality proofs |
-| Phase 3 | Developer platform | npm/pip SDK, card templates, agent-framework adapters, hosted demo |
-| Phase 4 | Treasury OS | Multi-wallet support, recurring budgets, accounting export, compliance policies |
+
+| Phase             | Goal                            | Key work                                                                                       |
+| ----------------- | ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Hackathon MVP     | Prove safe AI employee spending | Mock/real CAW client, cards, assignment, payments, threat lab, dashboard                       |
+| Post-hackathon P0 | Productionize payment path      | Real x402 middleware, facilitator verification, robust idempotency, persistent DB              |
+| Phase 1           | Real OPC beta                   | Vendor onboarding, owner notification, SSE event stream, CAW App runbook, better audit exports |
+| Phase 2           | Protocol integrations           | ERC-8183 escrow/evaluator, richer ERC-8004 trust scoring, service quality proofs               |
+| Phase 3           | Developer platform              | npm/pip SDK, card templates, agent-framework adapters, hosted demo                             |
+| Phase 4           | Treasury OS                     | Multi-wallet support, recurring budgets, accounting export, compliance policies                |
+
 
 ---
 
 ## 13. Documentation Index
 
-| Document | Purpose |
-|---|---|
-| `docs/01-hackathon-rules.md` | Official rules and requirement mapping |
-| `docs/02-sprint-tracker.md` | Build-period execution tracking |
-| `docs/03-attack-matrix.md` | Threat model and attack coverage |
-| `docs/04-architecture.md` | Architecture diagrams and protocol layers |
-| `docs/05-flow.md` | End-to-end interaction and x402 flow |
-| `docs/06-risks.md` | Risk boundaries and mitigations |
-| `docs/07-interfaces.md` | Interface/API design notes |
-| `docs/08-rules-gap-analysis.md` | Cobo rules versus project mapping |
-| `docs/09-open-day-insights.md` | Hackathon open-day notes |
-| `docs/10-vc-perspective.md` | Judge/investor positioning |
-| `docs/11-prizes-and-judging.md` | Scoring and demo strategy |
-| `docs/CAW-REAL-MODE-SOP.md` | Real CAW operation SOP |
-| `docs/cobo-caw-research/report-v2.md` | Deep CAW technical research |
+
+| Document                              | Purpose                                   |
+| ------------------------------------- | ----------------------------------------- |
+| `docs/01-hackathon-rules.md`          | Official rules and requirement mapping    |
+| `docs/02-sprint-tracker.md`           | Build-period execution tracking           |
+| `docs/03-attack-matrix.md`            | Threat model and attack coverage          |
+| `docs/04-architecture.md`             | Architecture diagrams and protocol layers |
+| `docs/05-flow.md`                     | End-to-end interaction and x402 flow      |
+| `docs/06-risks.md`                    | Risk boundaries and mitigations           |
+| `docs/07-interfaces.md`               | Interface/API design notes                |
+| `docs/08-rules-gap-analysis.md`       | Cobo rules versus project mapping         |
+| `docs/09-open-day-insights.md`        | Hackathon open-day notes                  |
+| `docs/10-vc-perspective.md`           | Judge/investor positioning                |
+| `docs/11-prizes-and-judging.md`       | Scoring and demo strategy                 |
+| `docs/CAW-REAL-MODE-SOP.md`           | Real CAW operation SOP                    |
+| `docs/cobo-caw-research/report-v2.md` | Deep CAW technical research               |
+
 
 ---
 
 ## 14. Team
 
-| Role | Contributor | Contribution |
-|---|---|---|
-| Founder / developer | Neo / NeoWeb3Nova | Product idea, architecture, CAW research, backend, frontend, demo flows, docs, threat model |
-| AI coding partners | Claude / GPT-class coding assistants | Implementation acceleration, refactoring support, test/debug assistance, documentation drafts under human review |
+
+| Role                | Contributor                     | Contribution                                                                                                     |
+| ------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Founder / developer | Neo / NeoWeb3Nova               | Product idea, architecture, CAW research, backend, frontend, demo flows, docs, threat model                      |
+| AI coding partners  | Claude / Z.ai coding assistants | Implementation acceleration, refactoring support, test/debug assistance, documentation drafts under human review |
+
 
 ---
 
@@ -768,3 +814,4 @@ License: not declared in this repository yet. Add a `LICENSE` file before produc
 ---
 
 > Because giving your AI employee a private key is not a business plan.
+
