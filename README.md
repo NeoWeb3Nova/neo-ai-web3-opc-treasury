@@ -3,6 +3,9 @@
   <p><strong>面向一人公司的 AI 员工财务操作系统</strong></p>
   <p>为 AI Agent 发行可编程 CAW 支出卡，让它们支付 x402 / API / 服务采购，同时把每一美元都限制在可授权、可撤销、可审计的边界内。</p>
   <p>
+    <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
+      <img alt="Award" src="https://img.shields.io/badge/获奖-AI%20%C3%97%20Web3%20School%20黑客松%20赛道季军%20%F0%9F%A5%89-FFD700">
+    </a>
     <img alt="Hackathon" src="https://img.shields.io/badge/Hackathon-AI%20%C3%97%20Web3%20Agentic%20Builders-6E56CF">
     <img alt="Track" src="https://img.shields.io/badge/Track-Cobo%20Agentic%20Wallet-111827">
     <img alt="Backend" src="https://img.shields.io/badge/Backend-FastAPI%20%2B%20Python%203.10%2B-009688">
@@ -11,6 +14,17 @@
     <img alt="Status" src="https://img.shields.io/badge/Status-MVP%20Ready-success">
   </p>
 </div>
+
+---
+
+> 🎉 **AI × Web3 School Agentic Hackathon 赛道季军（🥉）**
+> 
+> 把 Cobo Pact 抽象成 AI 员工虚拟支出卡，为每个 Agent 设置预算、限额、白名单和审计规则。
+> [推特官方公告](https://x.com/aiweb3school/status/2069726882988441643) · [PROPOSAL.md](PROPOSAL.md)
+>
+> <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
+>   <img src="https://pbs.twimg.com/media/HLki7fKbgAAR8yR.jpg" alt="AI x Web3 School Agentic Hackathon 官方公告" width="720">
+> </a>
 
 ---
 

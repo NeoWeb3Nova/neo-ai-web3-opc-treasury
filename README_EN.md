@@ -4,7 +4,26 @@
 
 Issue programmable CAW spending cards to AI agents, let them pay x402 services, and keep every dollar scoped, revocable, and auditable.
 
+<div align="center">
+  <p>
+    <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
+      <img alt="Award" src="https://img.shields.io/badge/Award-AI%20%C3%97%20Web3%20School%20Hackathon%20Bronze%20%F0%9F%A5%89-FFD700">
+    </a>
+    <img alt="Hackathon" src="https://img.shields.io/badge/Hackathon-AI%20%C3%97%20Web3%20Agentic%20Builders-6E56CF">
+    <img alt="Track" src="https://img.shields.io/badge/Track-Cobo%20Agentic%20Wallet-111827">
+  </p>
+</div>
 
+---
+
+> 🎉 **AI × Web3 School Agentic Hackathon — Track 3rd Place (🥉)**
+>
+> Abstracting Cobo Pact into AI employee virtual spending cards: budget caps, per-transaction limits, merchant whitelists, and audit rules per agent.
+> [Official announcement on X](https://x.com/aiweb3school/status/2069726882988441643) · [PROPOSAL.md](PROPOSAL.md)
+>
+> <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
+>   <img src="https://pbs.twimg.com/media/HLki7fKbgAAR8yR.jpg" alt="AI x Web3 School Agentic Hackathon official announcement" width="720">
+> </a>
 
 ---
 
