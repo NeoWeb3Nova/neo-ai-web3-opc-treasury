@@ -22,7 +22,7 @@ Issue programmable CAW spending cards to AI agents, let them pay x402 services, 
 > [Official announcement on X](https://x.com/aiweb3school/status/2069726882988441643) · [PROPOSAL.md](PROPOSAL.md)
 >
 > <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
->   <img src="https://pbs.twimg.com/media/HLki7fKbgAAR8yR.jpg" alt="AI x Web3 School Agentic Hackathon official announcement" width="720">
+>   <img src="docs/assets/hackathon-award.png" alt="AI x Web3 School Agentic Hackathon official announcement" width="720">
 > </a>
 
 ---
