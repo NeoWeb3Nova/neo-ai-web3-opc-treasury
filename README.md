@@ -13,18 +13,21 @@
     <img alt="Wallet" src="https://img.shields.io/badge/Wallet-Cobo%20CAW%20SDK%200.1.40-F59E0B">
     <img alt="Status" src="https://img.shields.io/badge/Status-MVP%20Ready-success">
   </p>
-
-  <p align="center">
-    <video src="https://raw.githubusercontent.com/NeoWeb3Nova/opc-agent-treasury/master/demo/video/opc-agent-treasury-demo.mp4" width="100%" controls></video>
-  </p>
 </div>
 
 ---
 
 > 🎉 **AI × Web3 School Agentic Hackathon 赛道季军（🥉）**
-> 
+>
 > 把 Cobo Pact 抽象成 AI 员工虚拟支出卡，为每个 Agent 设置预算、限额、白名单和审计规则。
-> [推特官方公告](https://x.com/aiweb3school/status/2069726882988441643) · [PROPOSAL.md](PROPOSAL.md)
+>
+> <p align="center">
+>   <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">🏆 推特官方公告</a>
+>   &nbsp;·&nbsp;
+>   <a href="PROPOSAL.md" target="_blank">📄 PROPOSAL.md</a>
+>   &nbsp;·&nbsp;
+>   <a href="https://res.cloudinary.com/dax9eqmtk/video/upload/v1781317377/OPC_Agent_Treasury_alqbrc.mp4" target="_blank">▶️ Demo 视频</a>
+> </p>
 >
 > <a href="https://x.com/aiweb3school/status/2069726882988441643" target="_blank">
 >   <img src="docs/assets/hackathon-award.png" alt="AI x Web3 School Agentic Hackathon 官方公告" width="720">
