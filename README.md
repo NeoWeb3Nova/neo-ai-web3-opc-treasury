@@ -13,6 +13,10 @@
     <img alt="Wallet" src="https://img.shields.io/badge/Wallet-Cobo%20CAW%20SDK%200.1.40-F59E0B">
     <img alt="Status" src="https://img.shields.io/badge/Status-MVP%20Ready-success">
   </p>
+
+  <p align="center">
+    <video src="https://res.cloudinary.com/dax9eqmtk/video/upload/v1781317377/OPC_Agent_Treasury_alqbrc.mp4" width="100%" controls></video>
+  </p>
 </div>
 
 ---
@@ -41,7 +45,7 @@
 | CAW 关键代码与配置 | 已完成 | `src/real_caw_client.py`、`.env.example`、`docs/CAW-REAL-MODE-SOP.md` |
 | 可运行原型 | 已完成 | FastAPI 后端、React UI、Streamlit UI、CLI Demo |
 | 链上 / CAW 验证证据 | 已完成 | 第 9 节、`docs/cobo-caw-research/report-v2.md` |
-| Demo 视频 | 待补充 | `demo/video/` |
+| Demo 视频 | 已嵌入 | README 顶部 `<video>` 播放器 |
 | Live demo | 本地可运行 | `http://localhost:5173`、`http://localhost:8000`、`http://localhost:8501` |
 
 **主赛道：** Cobo Track — Agentic Economy × Cobo Agentic Wallet<br>
