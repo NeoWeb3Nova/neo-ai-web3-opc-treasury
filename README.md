@@ -15,7 +15,7 @@
   </p>
 
   <p align="center">
-    <video src="https://res.cloudinary.com/dax9eqmtk/video/upload/v1781317377/OPC_Agent_Treasury_alqbrc.mp4" width="100%" controls></video>
+    <video src="https://raw.githubusercontent.com/NeoWeb3Nova/opc-agent-treasury/master/demo/video/opc-agent-treasury-demo.mp4" width="100%" controls></video>
   </p>
 </div>
 
