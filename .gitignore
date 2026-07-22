@@ -50,14 +50,10 @@ audit_logs/
 *.audit
 
 # Demo video (large files)
-# NOTE: demo videos uploaded for README embedding are tracked via git LFS or explicit add
-# *.mp4
-# *.avi
-# *.mov
-# *.mkv
-
-demo/video/*.mp4
-!demo/video/opc-agent-treasury-demo.mp4
+*.mp4
+*.avi
+*.mov
+*.mkv
 
 # Temporary files
 tmp/
